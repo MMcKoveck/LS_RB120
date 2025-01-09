@@ -253,13 +253,23 @@ class RPSGame
     end
   end
 
+  def display_action
+    compy = computer.move.to_s.capitalize
+    humey = human.move.to_s.capitalize
+    return puts "It's a Tie!" if compy == humey
+    RULES_2.each do |rule|
+      if rule.include?(compy) && rule.include?(humey)
+        puts rule
+      end
+    end
+  end
+
   def display_winner
+    display_action
     if human.move.beats?(computer.move)
       puts "#{human.name} Won!"
     elsif computer.move.beats?(human.move)
       puts "#{computer.name} Won!"
-    else
-      puts "It's a Tie!"
     end
   end
 
